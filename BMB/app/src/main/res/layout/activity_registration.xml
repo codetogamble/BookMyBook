@@ -47,6 +47,14 @@
         android:text="Register"
         android:id="@+id/btn_register"/>
 
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_my_books"
+        android:layout_below="@+id/btn_register"> </ListView>
+
+
+
 
 
 </RelativeLayout>
