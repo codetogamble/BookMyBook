@@ -1,5 +1,7 @@
 package com.rns.bmb.ui;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -12,12 +14,24 @@ import com.rns.bmb.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor preferencesEditor;
+    Integer regFlag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
-        
-        
+
+        preferences = getSharedPreferences("shared_preference",MODE_PRIVATE);
+        regFlag = preferences.getInt("Registered_Flag", 0);
+
+        if(regFlag == 0){
+            Intent intent = new Intent(this,RegistrationActivity.class);
+            startActivity(intent);
+        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("My Books"));
