@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.rns.bmb.R;
 import com.rns.bmb.web.MyGetThread;
