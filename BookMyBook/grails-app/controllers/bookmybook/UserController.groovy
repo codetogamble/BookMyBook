@@ -79,13 +79,13 @@ class UserController {
             return
         }
 
-        def book = Book.findByNameAndAuthor(name, author)
+        def book = Book.findByNameAndAuthor(bookName, bookAuthor)
 
         if(!book) {
-            books = new Book(name: name, author: author).save(flush: true, failOnError: true)
+            book = new Book(name: bookName, author: bookAuthor).save(flush: true, failOnError: true)
         }
 
-        def user = user.findByDeviceId(deviceId)
+        def user = User.findByDeviceId(deviceId)
         if(!user) {
             returnMap.value = "USER not found"
             render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
