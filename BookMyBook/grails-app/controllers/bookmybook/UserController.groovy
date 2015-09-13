@@ -15,7 +15,7 @@ class UserController {
         def email = params.EMAIL
         def city = params.CITY
 
-        if (!deviceId || !emnail) {
+        if (!deviceId || !email) {
             render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
             return
         }
@@ -45,7 +45,7 @@ class UserController {
         def email = params.EMAIL
         def city = params.CITY
 
-        if (!deviceId || !emnail) {
+        if (!deviceId || !email) {
             render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
             return
         }
