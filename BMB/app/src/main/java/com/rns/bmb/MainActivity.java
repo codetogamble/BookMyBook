@@ -1,5 +1,6 @@
 package com.rns.bmb;
 
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("My Books"));
+        tabLayout.addTab(tabLayout.newTab().setText("Search"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
     @Override
