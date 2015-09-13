@@ -1,6 +1,8 @@
 package com.rns.bmb.ui;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -49,6 +51,16 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
 
                 new MyPostThread(new HashMap<String,String>(), "http://192.168.0.104:8080/BookMyBook/user/saveUser?CITY=" + city +
                         "&DEVICE_ID=" + device_id + "&EMAIL=" + email + "&NAME=" + name).start();
+
+                SharedPreferences sharedPref = getSharedPreferences(getString(R.string.preference_identifier),Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt(getString(R.string.registration_flag), 1);
+
+                editor.putString(getString(R.string.my_name), name);
+                editor.putString(getString(R.string.my_city), city);
+                editor.putString(getString(R.string.my_email), email);
+
+                editor.commit();
         }
     }
 }

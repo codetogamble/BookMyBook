@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences("shared_preference",MODE_PRIVATE);
-        regFlag = preferences.getInt("Registered_Flag", 0);
+        preferences = getSharedPreferences(getString(R.string.preference_identifier),MODE_PRIVATE);
+        regFlag = preferences.getInt(getString(R.string.registration_flag), 0);
 
         if(regFlag == 0){
             Intent intent = new Intent(this,RegistrationActivity.class);
