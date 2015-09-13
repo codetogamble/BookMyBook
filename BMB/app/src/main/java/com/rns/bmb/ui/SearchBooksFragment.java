@@ -1,4 +1,4 @@
-package com.rns.bmb;
+package com.rns.bmb.ui;
 
 import android.app.Activity;
 import android.net.Uri;
