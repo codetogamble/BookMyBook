@@ -1,10 +1,8 @@
-package com.rns.bmb;
+package com.rns.bmb.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import com.rns.bmb.MyBooksFragment;
-import com.rns.bmb.SearchBooksFragment;
 
 public class MyPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
