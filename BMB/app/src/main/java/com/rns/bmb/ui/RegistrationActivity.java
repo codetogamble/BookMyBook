@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -12,11 +13,14 @@ import com.rns.bmb.R;
 import com.rns.bmb.web.MyGetThread;
 import com.rns.bmb.web.MyPostThread;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
 public class RegistrationActivity extends Activity implements View.OnClickListener{
     EditText editName, editEmail, editCity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,7 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
         editName =  (EditText)(findViewById(R.id.name));
         editEmail = (EditText)(findViewById(R.id.email));
         editCity = (EditText)(findViewById(R.id.city));
+
         btnRegister = (Button)(findViewById(R.id.btn_register));
 
         btnRegister.setOnClickListener(this);
@@ -43,7 +48,7 @@ public class RegistrationActivity extends Activity implements View.OnClickListen
                         Settings.Secure.ANDROID_ID);
 
                 new MyPostThread(new HashMap<String,String>(), "http://192.168.0.104:8080/BookMyBook/user/saveUser?CITY=" + city +
-                        "&DEVICE_ID=" + device_id + "&EMAIL_ID=" + email + "&NAME=" + name).start();
+                        "&DEVICE_ID=" + device_id + "&EMAIL=" + email + "&NAME=" + name).start();
         }
     }
 }

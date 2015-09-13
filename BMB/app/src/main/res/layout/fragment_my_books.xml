@@ -3,7 +3,11 @@
     android:layout_height="match_parent" tools:context="com.rns.bmb.ui.MyBooksFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_my_books"
+        android:layout_below="@+id/btn_register"> </ListView>
 
 </FrameLayout>
