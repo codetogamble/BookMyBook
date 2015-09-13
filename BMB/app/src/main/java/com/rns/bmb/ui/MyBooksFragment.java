@@ -1,5 +1,6 @@
 package com.rns.bmb.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -36,9 +37,14 @@ public class MyBooksFragment extends Fragment {
 
         listAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.simplerow, planetList);
         listViewReg.setAdapter(listAdapter);
-        return rootView;
-    }
-    public void saveBook(View v){
 
+        btnAddBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyBooksFragment.this.getActivity(), SaveBookActivity.class);
+                startActivity(intent);
+            }
+        });
+        return rootView;
     }
 }
