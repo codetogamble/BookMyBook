@@ -29,14 +29,9 @@ public class MyBooksFragment extends Fragment {
         listViewReg = (ListView)rootView.findViewById(R.id.lv_my_books);
         btnAddBooks = (Button)rootView.findViewById(R.id.add_books);
 
-        String[] planets = new String[] { "Mercury", "Venus", "Earth", "Mars",
-                "Jupiter", "Saturn", "Uranus", "Neptune"};
+        String[] books = new String[]{"LOTR", "LOTR II", "LOTR III"};
+        displayBooks(books);
 
-        ArrayList<String> planetList = new ArrayList<String>();
-        planetList.addAll( Arrays.asList(planets) );
-
-        listAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.simplerow, planetList);
-        listViewReg.setAdapter(listAdapter);
 
         btnAddBooks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,4 +42,12 @@ public class MyBooksFragment extends Fragment {
         });
         return rootView;
     }
+    public void displayBooks(String[] books){
+        ArrayList<String> booksList = new ArrayList<String>();
+        booksList.addAll( Arrays.asList(books) );
+
+        listAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.simplerow, booksList);
+        listViewReg.setAdapter(listAdapter);
+    }
+
 }
