@@ -36,6 +36,19 @@ class UserController {
         render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
     }
 
+    def getMyBooks() {
+        def returnMap = [:]
+        returnMap.status = "FAILURE"
+
+        def deviceId = params.DEVICE_ID
+
+        def user = User.findByDeviceId(deviceId)
+        def books = user?.books?:[]
+
+        returnMap = [status: "SUCCESS", books: books]
+        render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+    }
+
     def findUser() {
         def returnMap = [:]
         returnMap.status="FAILURE"
