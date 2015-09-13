@@ -6,21 +6,6 @@ class BookController {
 
     def index() { }
 
-    def getMyBooks() {
-        def returnMap = [:]
-        returnMap.status = "FAILURE"
-
-        def deviceId = params.DEVICE_ID
-
-        def books = User.createCriteria().list{
-            projections("books")
-            "eq"('deviceId', deviceId)
-        }
-
-        returnMap = [status: "SUCCESS", books: books]
-        render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
-    }
-
     def findBooks() {
         def returnMap = [:]
         returnMap.status = "FAILURE"
