@@ -65,4 +65,41 @@ class UserController {
         returnMap.status="SUCCESS"
         render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
     }
+
+    def addBook() {
+        def returnMap = [:]
+
+        def deviceId = params.DEVICE_ID
+        def bookName = params.BOOK_NAME
+        def bookAuthor = params.BOOK_AUTHOR
+
+        if(!deviceId || !bookAuthor || !bookName) {
+            returnMap.value = "Book Author or Name empty"
+            render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+            return
+        }
+
+        def book = Book.findByNameAndAuthor(name, author)
+
+        if(!book) {
+            books = new Book(name: name, author: author).save(flush: true, failOnError: true)
+        }
+
+        def user = user.findByDeviceId(deviceId)
+        if(!user) {
+            returnMap.value = "USER not found"
+            render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+            return
+        }
+        if(user.books.contains(book)) {
+            returnMap.value = "Book Already owned by user"
+            render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+            return
+        }
+        user.books.add(book)
+        user.save()
+
+        returnMap.status = "SUCCESS"
+        render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+    }
 }

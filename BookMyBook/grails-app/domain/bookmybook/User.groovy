@@ -11,5 +11,6 @@ class User {
     static hasMany = [books: Book]
 
     static constraints = {
+        deviceId(unique: true)
     }
 }
