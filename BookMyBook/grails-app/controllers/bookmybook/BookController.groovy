@@ -4,6 +4,8 @@ import grails.converters.JSON
 
 class BookController {
 
+    def bookService
+
     def index() { }
 
     def findBooks() {
@@ -19,22 +21,26 @@ class BookController {
             return
         }
 
-        authorLike = "%" + author + "%"
-        nameLike = "%" + name + "%"
+        def userBookList = bookService.fetchBooks(author, name, city);
 
-        def users = User.createCriteria().list{
-            'books' {
-                'like'('name', nameLike)
-                'like'('author', authorLike)
-            }
-            'eq'('city', city)
+        returnMap = [userBookList: userBookList, status: "SUCCESS"]
+        render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+    }
+
+    def fetchAvailableBooks() {
+        def returnMap = [:]
+        returnMap.status = "FAILURE"
+
+        def author = params.AUTHOR
+        def name = params.NAME
+        def city = params.CITY
+
+        if(!city || (!author && !name)) {
+            render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
+            return
         }
 
-        def userBookList = users.collect{
-            def books = it.books
-            def relevantBooks = books.findAll{it.name.contains(name) && it.author.contains(author)}
-            new Expando(userName: it.name, userEmail: it.email, books: relevantBooks)
-        }
+        def userBookList = bookService.fetchAvailableBooks(author, name, city);
 
         returnMap = [userBookList: userBookList, status: "SUCCESS"]
         render(text: returnMap as JSON, contentType: "application/json", encoding: "UTF-8");
