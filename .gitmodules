@@ -1,0 +1,6 @@
+[submodule "BookMyBook-container"]
+	path = BookMyBook-container
+	url = https://github.com/raunak91/BookMyBook-container.git
+[submodule "BMB"]
+	path = BMB
+	url = https://github.com/raunak91/BMB.git
